@@ -46,6 +46,22 @@ ul.users {
     margin-bottom: 0px
 }
 
+#message-area {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+}
+
+#messages {
+    flex: 1 0 auto;
+    height: 0px;
+    overflow-y: scroll;
+}
+
+#message-form {
+    margin-bottom: 0px;
+}
+
 .message-name {
     font-weight: 600;
     font-size: 16px;
