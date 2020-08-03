@@ -4,6 +4,7 @@ const http = require('http')
 const socketio = require('socket.io')
 const Filter = require('bad-words')
 
+
 const { generateMessage, generateLocationMessage } = require('./utils/messages')
 const { addUser, removeUser, getUser, getUsersInRoom } = require('./utils/users')
 
@@ -14,7 +15,17 @@ const io = socketio(server)
 const port = process.env.PORT || 3000
 const publicDirectoryPath = path.join(__dirname, '../public')
 
+
 app.use(express.static(publicDirectoryPath))
+
+app.set('views', publicDirectoryPath)
+app.engine('html', require('ejs').renderFile);
+app.set('view engine', 'html');
+
+app.get('/about', (req, res) => {
+    res.render('about')
+})
+
 
 io.on('connection', (socket) => {
     console.log('New websocket connection')
@@ -67,7 +78,6 @@ io.on('connection', (socket) => {
         callback()
     })
 })
-
 
 server.listen(port, () => {
     console.log(`Server is up on port ${port}`)
